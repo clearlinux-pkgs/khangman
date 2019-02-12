@@ -5,23 +5,24 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : khangman
-Version  : 18.08.0
-Release  : 2
-URL      : https://download.kde.org/stable/applications/18.08.0/src/khangman-18.08.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.08.0/src/khangman-18.08.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.08.0/src/khangman-18.08.0.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 18.12.2
+Release  : 3
+URL      : https://download.kde.org/stable/applications/18.12.2/src/khangman-18.12.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.2/src/khangman-18.12.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.2/src/khangman-18.12.2.tar.xz.sig
+Summary  : Hangman Game
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
-Requires: khangman-bin
-Requires: khangman-data
-Requires: khangman-license
-Requires: khangman-locales
-Requires: khangman-man
+Requires: khangman-bin = %{version}-%{release}
+Requires: khangman-data = %{version}-%{release}
+Requires: khangman-license = %{version}-%{release}
+Requires: khangman-locales = %{version}-%{release}
+Requires: khangman-man = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : libkeduvocdocument-dev
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : perl
+BuildRequires : qtbase-dev mesa-dev
 
 %description
 24 July 2001
@@ -34,9 +35,9 @@ su -c "make install"
 %package bin
 Summary: bin components for the khangman package.
 Group: Binaries
-Requires: khangman-data
-Requires: khangman-license
-Requires: khangman-man
+Requires: khangman-data = %{version}-%{release}
+Requires: khangman-license = %{version}-%{release}
+Requires: khangman-man = %{version}-%{release}
 
 %description bin
 bin components for the khangman package.
@@ -53,7 +54,7 @@ data components for the khangman package.
 %package doc
 Summary: doc components for the khangman package.
 Group: Documentation
-Requires: khangman-man
+Requires: khangman-man = %{version}-%{release}
 
 %description doc
 doc components for the khangman package.
@@ -84,28 +85,28 @@ man components for the khangman package.
 
 
 %prep
-%setup -q -n khangman-18.08.0
+%setup -q -n khangman-18.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535428962
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1549944487
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535428962
+export SOURCE_DATE_EPOCH=1549944487
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/khangman
-cp COPYING %{buildroot}/usr/share/doc/khangman/COPYING
-cp COPYING.DOC %{buildroot}/usr/share/doc/khangman/COPYING.DOC
-cp fonts/licenseDomesticManners.txt %{buildroot}/usr/share/doc/khangman/fonts_licenseDomesticManners.txt
-cp fonts/licenseDustimo.txt %{buildroot}/usr/share/doc/khangman/fonts_licenseDustimo.txt
+mkdir -p %{buildroot}/usr/share/package-licenses/khangman
+cp COPYING %{buildroot}/usr/share/package-licenses/khangman/COPYING
+cp COPYING.DOC %{buildroot}/usr/share/package-licenses/khangman/COPYING.DOC
+cp fonts/licenseDomesticManners.txt %{buildroot}/usr/share/package-licenses/khangman/fonts_licenseDomesticManners.txt
+cp fonts/licenseDustimo.txt %{buildroot}/usr/share/package-licenses/khangman/fonts_licenseDustimo.txt
 pushd clr-build
 %make_install
 popd
@@ -201,14 +202,8 @@ popd
 
 %files doc
 %defattr(0644,root,root,0755)
-/usr/share/doc/HTML/ca/khangman/getnewstuff.png
 /usr/share/doc/HTML/ca/khangman/index.cache.bz2
 /usr/share/doc/HTML/ca/khangman/index.docbook
-/usr/share/doc/HTML/ca/khangman/khangman-desert.png
-/usr/share/doc/HTML/ca/khangman/khangman-main.png
-/usr/share/doc/HTML/ca/khangman/settings-general.png
-/usr/share/doc/HTML/ca/khangman/settings-languages.png
-/usr/share/doc/HTML/ca/khangman/settings-timers.png
 /usr/share/doc/HTML/de/khangman/getnewstuff.png
 /usr/share/doc/HTML/de/khangman/index.cache.bz2
 /usr/share/doc/HTML/de/khangman/index.docbook
@@ -271,14 +266,14 @@ popd
 /usr/share/doc/HTML/uk/khangman/settings.png
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/khangman/COPYING
-/usr/share/doc/khangman/COPYING.DOC
-/usr/share/doc/khangman/fonts_licenseDomesticManners.txt
-/usr/share/doc/khangman/fonts_licenseDustimo.txt
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/khangman/COPYING
+/usr/share/package-licenses/khangman/COPYING.DOC
+/usr/share/package-licenses/khangman/fonts_licenseDomesticManners.txt
+/usr/share/package-licenses/khangman/fonts_licenseDustimo.txt
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/ca/man6/khangman.6
 /usr/share/man/de/man6/khangman.6
 /usr/share/man/es/man6/khangman.6
