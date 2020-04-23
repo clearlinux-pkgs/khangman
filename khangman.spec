@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : khangman
-Version  : 19.12.3
-Release  : 18
-URL      : https://download.kde.org/stable/release-service/19.12.3/src/khangman-19.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/19.12.3/src/khangman-19.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/19.12.3/src/khangman-19.12.3.tar.xz.sig
+Version  : 20.04.0
+Release  : 19
+URL      : https://download.kde.org/stable/release-service/20.04.0/src/khangman-20.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.04.0/src/khangman-20.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.04.0/src/khangman-20.04.0.tar.xz.sig
 Summary  : Hangman Game
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
@@ -84,15 +84,15 @@ man components for the khangman package.
 
 
 %prep
-%setup -q -n khangman-19.12.3
-cd %{_builddir}/khangman-19.12.3
+%setup -q -n khangman-20.04.0
+cd %{_builddir}/khangman-20.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583445780
+export SOURCE_DATE_EPOCH=1587684218
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -109,13 +109,11 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1583445780
+export SOURCE_DATE_EPOCH=1587684218
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/khangman
-cp %{_builddir}/khangman-19.12.3/COPYING %{buildroot}/usr/share/package-licenses/khangman/d357e60aa8efd63b4475c3363700ba54f9a71343
-cp %{_builddir}/khangman-19.12.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/khangman/1bd373e4851a93027ba70064bd7dbdc6827147e1
-cp %{_builddir}/khangman-19.12.3/fonts/licenseDomesticManners.txt %{buildroot}/usr/share/package-licenses/khangman/a6e27c652e2ddd1689befe4e579139777931e269
-cp %{_builddir}/khangman-19.12.3/fonts/licenseDustimo.txt %{buildroot}/usr/share/package-licenses/khangman/f2567f7dba596a5890c8fd0b2ce5335d3585bf09
+cp %{_builddir}/khangman-20.04.0/COPYING %{buildroot}/usr/share/package-licenses/khangman/d357e60aa8efd63b4475c3363700ba54f9a71343
+cp %{_builddir}/khangman-20.04.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/khangman/1bd373e4851a93027ba70064bd7dbdc6827147e1
 pushd clr-build
 %make_install
 popd
@@ -293,9 +291,7 @@ popd
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/khangman/1bd373e4851a93027ba70064bd7dbdc6827147e1
-/usr/share/package-licenses/khangman/a6e27c652e2ddd1689befe4e579139777931e269
 /usr/share/package-licenses/khangman/d357e60aa8efd63b4475c3363700ba54f9a71343
-/usr/share/package-licenses/khangman/f2567f7dba596a5890c8fd0b2ce5335d3585bf09
 
 %files man
 %defattr(0644,root,root,0755)
